@@ -1,0 +1,171 @@
+<% include header %>
+
+
+
+              
+              
+             
+
+
+
+
+
+  <div class="wrapper">
+    <section id="body">
+      
+      <section id="slideshow" class="row">
+        <div class="span12 slideshow">
+          <div class="flexslider">
+            <ul class="slides unstyled">
+              
+              
+              <% data['slideshows'].forEach(function(item) { %>
+
+
+                <% item.get('img_array').forEach(function(pic) { %>
+
+                    <li class="slide"><img src="<%= pic %>" class="slide-img" alt="" /></li>
+              
+                    
+
+                <% }) %>
+
+
+            <% }) %>
+              
+              
+                           
+              
+            </ul>
+          </div> <!-- /.flexslider -->
+          <div class="custom-flexslider-controls"></div> <!-- /.custom-flexslider-controls -->
+        </div>
+      </div>
+
+          
+        </div> <!-- /.span12.slideshow -->
+      </section> <!-- /#slideshow.row -->
+      
+
+
+  <div class="wrapper">
+      
+      
+      <div id="index" class="clearfix">
+  
+  <div class="row">
+    <div class="">
+      <h1 class="featured">
+        
+          
+             Featured products
+          
+        
+      </h1>
+    </div> <!-- /.span12 -->
+  </div> <!-- /.row -->
+  
+  
+  
+  <div class="row products masonry">
+    
+
+
+ 
+  <% data['shop'].forEach(function(item) { %>
+
+
+         <div class="masonry-item product span4">   
+
+            <% if (typeof item.get('img_array') != 'undefined') { %>
+              
+                <div class="image">     
+                    <a href="/x/<%= item.id %>/<%- fancyurl(item.get('title')) %>"><img src="<%= item.get('img_array')[0] %>"></a>
+                </div>
+            <% } %> 
+  
+
+            <div class="details">
+                 <h4 class="title"> <%= item.get('title') %></h4>
+                  <span class="price"> <%= item.get('price') %></span>
+            </div> <!-- /.details -->
+
+       </div>    <!-- /.product -->
+
+  <% }) %>
+
+
+
+    
+
+<div style="clear:both;"></div>
+
+
+    
+  </div> <!-- /.row -->
+  
+  
+  <div class="row">
+    <div class="row">
+      <h1 class="border">popular brands</h1>
+      <div class="page-content logos">
+
+        <a href="#"><img src="https://cdn.shopify.com/s/files/1/0371/0477/t/3/assets/mishka.png"></a>
+        <a href="#"><img src="https://cdn.shopify.com/s/files/1/0371/0477/t/3/assets/kidrobot.png"></a>
+        <a href="#"><img src="https://cdn.shopify.com/s/files/1/0371/0477/t/3/assets/dope.png"></a>
+        <a href="#"><img src="https://cdn.shopify.com/s/files/1/0371/0477/t/3/assets/supply.png"></a>
+        <a href="#"><img src="https://cdn.shopify.com/s/files/1/0371/0477/t/3/assets/crooks.png"></a>
+      </div>
+        
+
+
+
+        </div>
+
+          <!--tweets-->
+
+    <div class="row socials"> 
+        <div class="span6">
+               
+            <h1 id="twitter" class="front-header">@TIMEBOMBSHOP</h1>    
+            <div id="tweets">
+              
+            </div>
+
+        </div>
+            
+          <!--instagram-->
+    
+        <div class="span6">
+
+          <div id="insta">
+
+            <h1 id="photos" class="front-header">INSTAGRAM FEED</h1>
+              
+            <div class="row-fluid instagram">
+
+            </div>
+          </div>
+
+
+        
+        <section class="footer-social">
+          <h1 class="front-header">TIMEBOMB ON THE WEB</h1>
+          <ul class="unstyled clearfix">
+          <li><a href="http://twitter.com/shopify" title="timebombtest on Twitter" class="icon-social twitter ir">Twitter</a></li>
+          <li><a href="http://www.facebook.com/shopify" title="timebombtest on Facebook" class="icon-social facebook ir">Facebook</a></li>
+          </ul>
+        </section> <!-- /.span4 -->
+      </div><!--span6-->
+
+      </div>
+    </div> <!-- /.span12 -->
+  </div> <!-- /.row -->
+</div>
+  
+</div> <!-- /#index -->
+      
+    </section> <!-- /#body -->
+  </div><!--wrapper-->
+
+<% include footer %>

@@ -1,0 +1,523 @@
+
+<html>
+  <head>
+    <title>Build</title>
+    
+  
+     
+     <link rel="stylesheet" href="//fuccyocms.parseapp.com/css/bootstrap.css" />
+    
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="css/froala_editor.min.css" rel="stylesheet" type="text/css">
+    
+    <link href="//cdn.shopify.com/s/files/1/0371/0477/t/3/assets/shop.css?881" rel="stylesheet" type="text/css">
+
+
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    
+    <script src="js/froala_editor.min.js"></script>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    
+  
+    <script src="//cdn.shopify.com/s/files/1/0371/0477/t/3/assets/jquery.slider.js?881"></script>
+  
+       
+    
+        <script src='js/raphel.js'></script>
+        
+     <script src="js/color.js"></script>
+  
+     
+  
+  
+    <script>
+        
+        $( document ).ready(function() {
+   
+
+        var cw = Raphael.colorwheel($("#colorwheel")[0],150);
+        cw.input($("#colorwheel input")[0]);
+        
+             data = [
+                {
+                        area: 'header',
+                        templates: [
+                            { 
+                              name: 'menu1',
+                              contentAreaName: 'Menu',
+                              limit: 6,
+                              layout: [
+                                        {label:"Menu_Title",type:"input",name:"title"},
+                                        {label:"Link",type:"input",name:"url"}
+                                    ]
+                                        
+                            }, {
+                                name: 'menu2',
+                                contentAreaName: 'Menu',
+                                limit: 6,
+                                layout: [
+                                        {label:"Menu_Title",type:"input",name:"title"},
+                                        {label:"Link",type:"input",name:"url"}
+                                    ]
+                            }
+                        ]
+                },
+                {
+                        area: 'hero',
+                        templates: [
+                            { 
+                              name: 'hero1',
+                              contentAreaName: 'Hero',
+                              limit: 1,
+                              layout: [
+                                        {label:"Youtube_Video_URL",type:"input",name:"title"}
+                                    ]
+                                        
+                            }, {
+                                name: 'hero2',
+                                contentAreaName: 'Hero',
+                                limit: 1,
+                                layout: [
+                                        {label:"Choose_a_small title",type:"input",name:"smalltitle"},
+                                        {label:"Headline",type:"input",name:"headline"},
+                                        {label:"Button",type:"input",name:"buttontxt"},
+                                        {label:"Upload_Hero_Image",type:"img",name:"img_array"}
+                                    ]
+                            }
+                        ]
+                },
+                {
+                        area: 'body',
+                        templates: [
+                            { 
+                              name: 'threecol',
+                              contentAreaName: 'Features',
+                              limit: null,
+                              layout: []
+                                        
+                            },
+                            { 
+                              name: 'email1',
+                              contentAreaName: 'Email',
+                              limit: null,
+                              layout: []
+                                        
+                            },
+                            { 
+                              name: 'tour1',
+                              contentAreaName: 'Tour',
+                              limit: null,
+                              layout: [
+                                        {label:"Title",type:"input",name:"title"},
+                                        {label:"Tour_Date",type:"date",name:"date"},
+                                        {label:"Ticket_URL",type:"input",name:"url"},
+                                        {label:"Location",type:"input",name:"location"}
+                                    ]
+                                        
+                            },
+                            { 
+                              name: 'shop1',
+                              contentAreaName: 'Shop',
+                              limit: null,
+                              layout: []
+                                        
+                            }
+                        ]
+                        
+                        
+                },
+                {
+                        area: 'footer',
+                        templates: [
+                            { 
+                              name: 'footer1',
+                              contentAreaName: 'Footer',
+                              limit: 1,
+                              layout: [
+                                        {label:"Copyright_Name",type:"input",name:"title"}
+                                    ]
+                                        
+                            }
+                        ]
+                }
+                ];
+
+
+             data.forEach(function(x){
+
+                //console.log(x.area);
+
+                x.templates.forEach(function(xx){
+                    console.log(xx);
+                    
+                     phtml =  '<div class="draggable-'+x.area+'" ui-widget-content" id="type1">';
+                     //phtml += '<img src="build/'+xx.name+'.png" data-contentAreaName="'+xx.contentAreaName+'" data-limit="'+xx.limit+'" data-type="'+x.area+'" data-template="'+JSON.stringify(xx.layout)+'"  >';
+                     
+                     phtml += "<img src='build/"+xx.name+".png' data-module='"+xx.name+"' data-contentAreaName='"+xx.contentAreaName+"' data-limit='"+xx.limit+"' data-type='"+x.area+"' data-template='"+JSON.stringify(xx.layout)+"'  >";
+                     
+
+                     phtml += ' </div>';
+                    
+                    $('.'+x.area).append(phtml);
+                    
+                });
+
+            });
+        
+        });
+            
+</script>
+    
+  
+  </head>
+  <body>
+   
+      building site id: <%= active %> for <%= user.getUsername() %>
+      
+      
+      <style>
+          .browser {
+            border-radius: 2px 2px 0 0;
+            background: url(img/browser.svg) no-repeat top left;
+            padding-top: 36px;
+            margin: 0 auto;
+            }
+      </style>
+      
+      
+    <style>
+      
+        .draggable {
+z-index: 55;
+}
+        
+  #draggable, #draggable2 { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  .droppable {
+width: 96%;
+/* padding: 50px 0; */
+min-height: 32px;
+height: auto;
+margin: 0 10px; }
+  
+  
+  
+  .ui-state-default{
+      background: yellow !important;
+      background-image: none !important;
+      min-height: 100px;
+  }
+  .ui-state-hover{
+      background: #66ffff;
+      background-image: none !important;
+      min-height: 100px;
+  }
+  </style>
+  <script>
+    
+      
+  $(function() {
+    $( ".draggable-header" ).draggable({ 
+        revert: true,
+    });
+    
+    
+    $( ".draggable-hero" ).draggable({ 
+        revert: true,
+    });
+    
+    
+    $( ".draggable-body" ).draggable({ 
+        revert: true,
+    });
+    
+    
+    $( ".draggable-footer" ).draggable({ 
+        revert: true,
+    });
+    
+    
+   
+     
+   
+    $( "#header" ).droppable({
+        
+      accept: ".draggable-header",  
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      drop: function( event, ui ) {
+          
+          console.log(ui.helper[0].innerHTML);
+          
+              $( this ).html('<li class="removable">'+ui.helper[0].innerHTML+'</li>');
+          
+              $('.removable').draggable({ 
+                   snapMode: "inner",
+                   snap: true,
+                   revert: true,
+                   snapTolerance: 30,
+                   drag: function( event, ui ) {
+                       
+                       
+                      if (ui.offset.left > 900 || ui.offset.left < -500) ui.helper[0].innerHTML = 'Remove';
+                      if (ui.offset.top > 200 || ui.offset.top < -200) ui.helper[0].innerHTML = 'Remove';
+                   },
+                  
+                   stop: function( event, ui ) {
+                       console.log(ui);
+                       
+                      if (ui.offset.left > 900 || ui.offset.left < -500) ui.helper[0].remove();
+                      if (ui.offset.top > 200 || ui.offset.top < -200) ui.helper[0].remove();
+                   }
+              });
+          
+      }
+    });
+    
+    
+    $( "#hero" ).droppable({
+        
+      accept: ".draggable-hero",  
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      drop: function( event, ui ) {
+          
+          console.log(ui.helper[0].innerHTML);
+          
+              $( this ).html('<li class="removableb">'+ui.helper[0].innerHTML+'</li>');
+          
+              $('.removableb').draggable({ 
+                   snapMode: "inner",
+                   snap: true,
+                   revert: true,
+                   snapTolerance: 30,
+                   drag: function( event, ui ) {
+                       
+                       
+                      if (ui.offset.left > 500 || ui.offset.left < -500) ui.helper[0].innerHTML = 'Remove';
+                      if (ui.offset.top > 200 || ui.offset.top < -200) ui.helper[0].innerHTML = 'Remove';
+                   },
+                  
+                   stop: function( event, ui ) {
+                      
+                       
+                      if (ui.offset.left > 500 || ui.offset.left < -500)  ui.helper[0].innerHTML = 'Remove';
+                      if (ui.offset.top > 200 || ui.offset.top < -200) ui.helper[0].innerHTML = 'Remove';
+                   }
+              });
+          
+      }
+    });
+    
+    $( "#body" ).droppable({
+        
+      accept: ".draggable-body",  
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      drop: function( event, ui ) {
+          
+          console.log(ui.helper[0].innerHTML);
+          
+              $( this ).append('<li class="removablec">'+ui.helper[0].innerHTML+'</li>');
+          
+                $( ".sortable" ).sortable();
+          
+              
+          
+      }
+    });
+    
+    $( "#footer" ).droppable({
+        
+      accept: ".draggable-footer",  
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      drop: function( event, ui ) {
+          
+          console.log(ui.helper[0].innerHTML);
+          
+              $( this ).html('<li class="removabled">'+ui.helper[0].innerHTML+'</li>');
+          
+              $('.removabled').draggable({ 
+                   snapMode: "inner",
+                   snap: true,
+                   revert: true,
+                   snapTolerance: 30,
+                   drag: function( event, ui ) {
+                       
+                       
+                      if (ui.offset.left > 900 || ui.offset.left < -500) ui.helper[0].innerHTML = 'Remove';
+                      if (ui.offset.top > 200 || ui.offset.top < -200) ui.helper[0].innerHTML = 'Remove';
+                   },
+                  
+                   stop: function( event, ui ) {
+                       console.log(ui);
+                       
+                      if (ui.offset.left > 900 || ui.offset.left < -500) ui.helper[0].innerHTML = 'Remove';
+                      if (ui.offset.top > 200 || ui.offset.top < -200) ui.helper[0].innerHTML = 'Remove';
+                   }
+              });
+          
+      }
+    });
+    
+    
+    
+    /*
+    $( "#hero" ).droppable({
+        
+      accept: ".draggable-hero",  
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      drop: function( event, ui ) {
+          
+          console.log(ui.helper[0].innerHTML);
+          
+              $( this ).html('<li>'+ui.helper[0].innerHTML+'</li>');
+          
+      }
+    });
+    
+    
+    
+    $( "#body" ).droppable({
+        
+      accept: ".draggable-body",  
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      drop: function( event, ui ) {
+          
+          console.log(ui.helper[0].innerHTML);
+          
+              $( this ).append('<li>'+ui.helper[0].innerHTML+'</li>');
+          
+              $( ".sortable" ).sortable();
+          
+      }
+    });
+    
+    
+    
+    
+    $( "#footer" ).droppable({
+        
+      accept: ".draggable-footer",  
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      drop: function( event, ui ) {
+          
+          console.log(ui.helper[0].innerHTML);
+          
+              $( this ).html('<li>'+ui.helper[0].innerHTML+'</li>');
+          
+      }
+    });
+    
+    */
+    
+    
+  });
+  
+  
+  function saveIt(){
+    
+    saveobj = new Array();
+    
+    $('.browser li').each(function(x,y){
+        
+        //saveobj.push($(y).find('img').data('template'));
+
+        saveobj.push($(y).find('img').data());
+
+        console.log($(y).find('img').data());
+
+    });
+   
+   
+    var x = $('#colorwheel input').val().replace('#','');
+   
+    console.log('save-----');
+    console.log(saveobj);
+
+   
+    
+    $.post( "/setupsite", { obj: saveobj }, function( data ) {
+
+         window.location = 'https://fuccyocms.parseapp.com/admin';
+
+    });
+
+
+    //window.location = 'https://fuccyocms.parseapp.com/setupsite/'+saveobj.toString()+'/'+x;
+  
+    
+  }
+  </script>
+</head>
+<body>
+ 
+    
+    
+    <div class='row'>
+    
+        <div class='col-md-3'>
+            
+            <div class='well header'>
+            </div>
+            
+            <div class='well hero'>
+            </div>
+            
+            <div class='well body'>
+            </div>
+            
+            <div class='well footer'>
+            </div>
+            
+          
+        </div>
+
+
+        <div class='col-md-6'>
+
+
+            <div class="ui-widget-header browser">
+             <ul id="header" class="droppable">
+              </ul>
+                
+             <ul id="hero" class="droppable">
+              </ul>
+                
+             <ul id="body" class="sortable droppable">
+              </ul>
+                
+              <ul id="footer" class="droppable">
+              </ul>  
+                
+                
+                
+            </div> 
+
+            
+        </div>
+      
+        
+        
+        <div class='col-md-2 col-offset-1'>
+            
+            
+            <div id='colorwheel'><input></div>
+            
+            <Br><br><Br>
+            
+            <button onclick='saveIt();' class='btn'>Save</button>
+        </div>
+        
+    </div>
+        
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<% include header %>
+
+
+</div>
+
+<div class="wrapper">
+    <section id="body">
+      
+
+
+  <div class="wrapper">
+      
+      
+      <div id="product" class="kid-robot-x-street-fighter-collectible-vinyl-toy-series-2-3-inch" itemscope itemtype="http://schema.org/Product">
+  <meta itemprop="url" content="http://timebombtest.myshopify.com/products/kid-robot-x-street-fighter-collectible-vinyl-toy-series-2-3-inch" />
+  <meta itemprop="image" content="//cdn.shopify.com/s/files/1/0371/0477/products/369-300x300_grande.jpg?v=1392078767" />
+  
+  <div class="row">
+    <div class="span5">
+      <div class="image featured">
+        
+        <% item.get('img_array').forEach(function(pic) { %>
+
+                   <img src="<%= pic %>">
+              
+        <% }) %>
+        
+        <a href="//cdn.shopify.com/s/files/1/0371/0477/products/369-300x300_1024x1024.jpg?v=1392078767" class="zoom" id="zoom-image" style="display:none;">Enlarge Image</a>
+        
+      </div> <!-- /.image -->
+      
+    </div> <!-- /.span8 -->
+    <div class="span7" style="float:right">
+      <h1 class="title"  itemprop="name"><%= item.get('title') %></h1>
+      <div class="purchase">
+        <h2 class="price" id="price-preview" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+           <meta itemprop="priceCurrency" content="USD" />
+	        
+    	    <link itemprop="availability" href="http://schema.org/InStock" />
+        	
+
+          <span itemprop="price"><%= item.get('price') %></span>
+        </h2>
+      </div> <!-- /.purchase -->
+      
+      <div class="description" itemprop="description">
+        <%= item.get('body') %>
+      </div>
+      
+       
+          
+      
+          
+           <div class="interface">
+     
+
+            <!-- displayed items -->
+            <div class="displayed-items">
+              
+
+                    <div class="item left">
+                   <!-- <p class="price item_price"><span>$</span>10.00</p> -->
+                    <p class="name item_name"><%= item.get('title') %></p>
+                    <div class="size" style="display:none;">
+                      <div class="shim-select"><span class="label">Select Size</span> <div class="arrows"></div></div>
+                      <select name="size">
+                        <option selected disabled value="">Select Size</option>
+                        <option value="S">Small</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Large</option>
+                        <option value="XL">X Large</option>
+                        <option value="2XL">2X Large</option>
+                      </select>
+                    </div>
+                  </div>
+
+
+                    
+            <a class="btn" name="add" id="add-item-to-cart" data-id="<%= item.id %>"  data-name="<%= item.get('title') %>" data-price="<%= item.get('price') %>">Add to cart</a>     
+           
+
+            </div>
+            <!-- /display items -->
+
+          </div>
+
+
+
+        </div>
+        
+        
+        
+        <div class="purchase-section">
+          <div class="purchase">
+                   
+          </div> <!-- /.purchase -->
+        </div> <!-- /.clearfix -->
+     
+      
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+<% include footer %>

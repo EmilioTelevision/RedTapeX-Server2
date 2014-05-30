@@ -1,0 +1,61 @@
+<!-- Include the header partial -->
+<% include ../_header %>
+
+
+<!-- content -->
+<div class="sidebar">
+    <div class="picture">
+        <% var hash = hex_md5(userEmail); %>
+      	<img src=<%= 'https://secure.gravatar.com/avatar/' + hash + '?size=220&default=https%3A%2F%2Fwww.parse.com%2Fimages%2Faccounts%2Fno_avatar.png' %> />  </div>
+  	<div class="username"><%= userDisplayName %></div>
+  	<div class="blog_description"><%= userDescription %></div>
+</div>
+  	
+<div class="main_content">
+
+
+        <span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
+<a href="javascript:;" class="simpleCart_checkout">Checkout</a>
+
+
+	<ul>
+		
+                <% items.forEach(function(item) { %>
+                <li class="simpleCart_shelfItem">
+  		<div class="post_link">
+	  		<h1><%= item.get("title") %></h1>
+	  		<h5><%= item.get("price") %></h5>
+	  		<p><%= item.get("body") %></p>
+                        <a style="width: 100px;height: 100px;background: red;font-size: 20px;" href="javascript:;" onclick="simpleCart.add({name:'<%= item.get("title") %>', price: <%= item.get("price") %>,size:'tiny',thumb:'e.png'});" >add to cart</a>
+  		</div>
+                </li>
+                <% }) %>
+
+
+	</ul>
+
+	<div class="simpleCart_items" >
+	</div>
+
+
+	<div class="sc_demo_items" >
+	</div>
+
+	<br />
+	SubTotal: <span id="simpleCart_total" class="simpleCart_total"></span> <br />
+	Tax Rate: <span id="simpleCart_taxRate" class="simpleCart_taxRate"></span> <br />
+	Tax: <span id="simpleCart_tax" class="simpleCart_tax"></span> <br />
+	Shipping: <span id="simpleCart_shipping" class="simpleCart_shipping"></span> <br />
+	-----------------------------<br />
+	Final Total: <span id="simpleCart_grandTotal" class="simpleCart_grandTotal"></span> <br />
+
+	<a href="javascript:;" class="simpleCart_checkout">checkout</a>	
+
+
+
+
+  	
+</div>
+
+<!-- Include the footer partial -->
+<% include ../_footer %>

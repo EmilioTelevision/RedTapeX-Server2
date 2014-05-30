@@ -1,0 +1,50 @@
+<div class="col-sm-12 col-md-4 col-lg-4 text-center <%= color %>">
+
+
+    
+	        			<h2><%= contentItem.get('title') %></h2>
+
+    <% if (typeof contentItem.get('img_array') != 'undefined') { %>
+                <% contentItem.get('img_array').forEach(function(pic) { %>
+                 <img  width="100%" class="img-responsive" alt="Responsive image" src='<%= pic %>'>
+                <% }) %>
+    <% } %>
+
+
+
+<div class="displayed-items" style='display:none;'>
+              
+
+                    <div class="item left">
+                   <!-- <p class="price item_price"><span>$</span>10.00</p> -->
+                    <p class="name item_name"><%= contentItem.get('title') %></p>
+                    <div class="size" style="display:none;">
+                      <div class="shim-select"><span class="label">Select Size</span> <div class="arrows"></div></div>
+                      <select name="size">
+                        <option selected disabled value="">Select Size</option>
+                        <option value="S">Small</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Large</option>
+                        <option value="XL">X Large</option>
+                        <option value="2XL">2X Large</option>
+                      </select>
+                    </div>
+                  </div>
+
+
+</div>
+
+
+	        			<div class="buy col-xs-12  col-sm-12 col-md-12 col-lg-12 text-center">
+
+                                                    <a class="btn btn-primary add-item-to-cart" name="add" id="" data-id="<%= contentItem.id %>"  data-name="<%= contentItem.get('title') %>" data-price="<%= contentItem.get('price') %>"><span class="glyphicon glyphicon-shopping-cart"></span>BUY NOW</a>     
+
+	        				&nbsp;
+	  						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-right"></span>MORE</button>
+	        			</div>
+	        		</div>
+
+
+
+
+

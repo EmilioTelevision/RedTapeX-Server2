@@ -1,0 +1,39 @@
+<li class='mix'>
+
+        <div class="bs-example">
+            <h4>Twitter Post of the week</h4>
+
+
+          
+<% var x = stat.get('related_data')[0]; %>
+
+
+
+<div class='row detailpanel'>
+
+<div class='col-md-9 col-md-offset-1'>
+    <img class='socialavi' src='<%= x.author_avatar %>'>
+
+    <h4><%- stat.get('text') %></h4>
+    
+    <%- x.post_text %>
+
+
+</div>
+
+
+<div class='col-md-2'>
+</div>
+
+</div>
+
+</div>
+
+
+    <div class="highlight">
+            <!--<button type="button" class="btn btn-default btn-newbtn">Promote</button>-->
+            <button type="button" class="btn btn-default btn-noborder"><span class="glyphicon glyphicon-star"></span> Save</button>
+            <button type="button" class="btn btn-default btn-noborder" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-share-alt"></span> Share</button>
+        </div>
+
+    </li>

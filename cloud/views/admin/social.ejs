@@ -1,0 +1,71 @@
+<% var stylesheet = "admin" %>
+<% var title = "Admin" %>
+<% include header %>
+
+
+
+<div class="col-sm-4 col-md-3 sidebar2">
+              
+              <h3>Settings</h3>
+                      
+                  <h6>Administer your account and customize your portal. Account settings</h6>
+              
+                  <h5>Area Settings</h5>
+
+                  <ul class='smlst'>
+                      <li class='settings-general' onclick='settingsToggle("general");'><a>General</a></li>
+                      <li class='settings-web' onclick='settingsToggle("web");'><a>Web</a></li>
+                      <li class='settings-shop' onclick='settingsToggle("shop");'><a>Shop</a></li>
+                      <li class='settings-social' onclick='settingsToggle("social");'><a>Social</a></li>
+                      <li class='settings-promo' onclick='settingsToggle("promo");'><a>Promo</a></li>
+
+                  </ul>
+                  
+          </div>   
+
+
+<div id='mainarea' class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-4 main">
+          <h1 class="page-header">Social</h1>
+
+<ul id='mix' class='streamstats'>
+
+<% if (!_.isEmpty(stats)) { %>
+    	
+      		<% stats.forEach(function(stat) { %>
+                        <li class='mix post_container emp-<%= stat.get('filename') %>'>
+        		
+
+                            <div class='col-md-10'>
+                                <span class="headline"><%= stat.get('headline') %></span>
+                                <%- stat.get('text') %>
+                            </div>
+
+                            <div class='col-md-2 timeagoinsight'>
+                                <%= formatTime(stat.createdAt) %>
+                            </div>
+
+
+                            
+                             <% if (stat.get('related_data') != 'undefined'){ %> 
+                            
+                                 <% if (stat.get('filename') == 'bigreshare'){  %> <% include cards/bigreshare %><% } %>
+                                 <% if (stat.get('filename') == 'interestingfollowers'){  %> <% include cards/interestingfollowers %><% } %>
+
+
+
+                             <% } %>
+
+                        </li>
+     		<% }) %>
+    	
+    <% } else { %>
+        <li>No Stats yet.</li>
+  	<% } %>
+
+
+         
+        </div>
+
+</ul>
+
+<% include footer %>

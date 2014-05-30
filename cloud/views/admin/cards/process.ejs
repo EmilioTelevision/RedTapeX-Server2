@@ -1,0 +1,174 @@
+
+
+
+     <% if (!_.isEmpty(data)) { %>
+
+             <%  for (var key in data) { %>
+
+
+
+
+                <%  if (typeof data[key] == 'object' && key == 'echonest'){  %>
+                    
+                    <%  for (var kkey in data[key]) { %>
+                
+                            <% if (typeof data[key][kkey] != 'object') { %>
+                                 
+                                <h5><%= kkey %>: <%= data[key][kkey] %></h5>
+                            
+                            <% } else { %>
+
+                                <h5><%= kkey %>: <%= JSON.stringify(data[key][kkey]) %></h5>
+
+                             <% } %>
+
+                    <% } %>
+
+                <% } %>
+
+
+
+
+
+                 <%  if (typeof data[key] == 'object' && key != 'echonest'){  %>
+                   
+                
+
+                    <h2><i class='ss-<%= key.toLowerCase() %>'></i></h2>
+
+                   
+
+                         <%  for (var kkey in data[key]) { %>
+                            <h5>
+                                <%= kkey %>: 
+                                <% for(var i in data[key][kkey]) { %>
+                                    <% var stat_now = data[key][kkey][i] %>
+                                    <%= stat_now %>
+                                <% break; }; %>
+
+                                -- compared to previous -- 
+                                
+                                <% var spark = []; for(var i in data[key][kkey]) { spark.unshift(data[key][kkey][i]); } %>
+                                   
+                                 <% var stat_old = data[key][kkey][i] %>
+                                 <%= stat_old %>
+
+                                 <small class="stat-<%= ((stat_now >= stat_old) ? 'increase' : 'decrease') %>">Change <%= ((stat_now >= stat_old) ? 'increase' : 'decrease') %></small>
+                                 
+                                 <% if (((parseInt(stat_now) / parseInt(stat_old)) * 100) > 110){ %> <b> --- NOTEWORTHY GAIN !!!!!</b> <% } %>
+
+                                 <% if (((parseInt(stat_now) / parseInt(stat_old)) * 100) < 90){ %> <b> --- NOTEWORTHY LOSS !!!!!</b> <% } %>
+
+                                 ----- percentage change ( <%= Math.round(((parseInt(stat_now)- parseInt(stat_old)) /  parseInt(stat_old)) * 100) %>% ) ---- trend ----  <span class='inlinesparkline'><%= spark %></span>
+
+                            </h5>
+                         <% } %>
+
+                     <p><%= JSON.stringify(data[key]) %></p>     
+                 <%   } %>
+             <%  } %>
+
+
+       <% } %>
+
+
+
+     <% if (!_.isEmpty(orders)) { %>
+
+         <% orders.forEach(function(order) { %>
+                        <li class='mix post_container'>
+        		
+                            <div class='col-md-10'>
+                                <span class="headline">Money</span>
+                                New order from <b><%= order.get('email') %></b> going to <b><%= order.get('address_city') %>, <%= order.get('address_state') %></b> 
+                            </div>
+
+                            <div class='col-md-2 timeagoinsight'>
+                                <%= formatTime(order.createdAt) %>
+                            </div>
+
+                             
+                            
+                             <% if (order.get('order') != 'undefined'){ %> 
+                            
+                                 <% include cards/order %>
+                                
+
+
+
+                             <% } %>
+
+                        </li>
+     		<% }) %>
+    	
+    <% } %>
+   
+
+     
+
+      <% if (!_.isEmpty(timeline)) { %>
+    <li class='mix post_container insight-hasweb'>
+       
+
+        <div class='col-md-10'>
+            <span class="headline">Traffic Spike</span>
+            <%= user.get('host') %> traffic is [up] 
+         </div>
+
+         <div class='col-md-2 timeagoinsight'>
+            just now
+         </div>        
+
+         <div class='row detailpanel'> 
+          <div class='col-md-9 col-md-offset-1'>
+            <div id='primarychart_wrap'>
+
+
+                <% if (!_.isEmpty(data)) { %>
+
+                    <div class='col-md-3'>
+                    <h5>Web Views</h5> <%= data.pageview %>
+                    </div>
+
+                    <div class='col-md-3'>
+                    <h5>Content Views</h5> <%= data.contentview %>
+                    </div>
+
+                    <div class='col-md-3'>
+                    <h5>Product Views</h5> <%= data.productview %>
+                    </div>
+
+
+                    <div class='col-md-3'>
+                    <h5>Sales</h5> <%= data.sales %>
+                    </div>
+
+                 <% } %>
+
+
+                <div id="primarychart" style="height: 222px;">
+                </div>
+                </div>
+            </div>  
+            </div>
+
+            <script>
+
+            var timeline = <%- JSON.stringify(timeline) %>;
+
+            var jsondata = new Array();
+            for (var key in timeline)
+                            {
+                                jsondata.push({ day: key, value: timeline[key] }); 
+                            }
+
+           
+
+            </script>
+
+            
+    </li>
+    <% } %>
+
+
+    

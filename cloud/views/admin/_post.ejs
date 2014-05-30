@@ -1,0 +1,43 @@
+<div class='post_item row'>
+
+<div class='col-md-10'>
+ <img class='prodimg' src='<%= ((typeof post.get('img_array') != 'undefined') ? post.get('img_array')[0] : '')  %>'>
+ <a class='post_title'><%= post.get('title') %></a> <!-- <a class='post_title' href="<%= '/x/' + post.id %>"></a> -->
+  <div class='post_body'><%- post.get('body') %></div>
+ 
+</div>
+
+<div class='col-md-2'>
+ 
+  <div class='post_actions'>
+
+    <a class='link_button' href="<%= '/posts/' + post.id + '/edit' %>"><img class="navimg" src="img/edit.png"></a>
+   
+   
+    <form id='form-<%= post.id %>' class='link_button_form' action="<%= '/posts/' + post.id %>" method='post'>
+      <!-- This hidden element causes express.methodOverride middleware to override
+      the HTTP method from post to delete for a truly RESTful interface. -->
+      <input type='hidden' name='_method' value='delete' />
+        <a class='link_button' onclick='$("#form-<%= post.id %>").submit();'><img class="navimg" src="img/remove.png"></a>
+   
+      <input class='link_button' type='hidden' value='delete' />
+    </form>
+  </div>
+    
+
+</div>
+
+ 
+</div>
+
+
+
+    <div class='row minis'>
+        <div class='col-md-2'>
+        <%= formatTime(post.createdAt) %>
+        </div>
+
+        <div class='col-md-2'>
+        Views:<%= ((typeof post.get('views') != 'undefined') ? post.get('views') : 0) %> 
+        </div>
+    </div>

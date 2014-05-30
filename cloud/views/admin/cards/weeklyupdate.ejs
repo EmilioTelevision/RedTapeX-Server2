@@ -1,0 +1,75 @@
+<li class='mix'>
+
+        <div class="bs-example">
+            <h4>Weekly Update</h4>
+
+
+            <div class='row'>
+                <div class='col-md-12'>
+                    
+                   <div id='primarychart_wrap'>
+
+                        <div id="primarychart" style="height: 222px;">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+
+             <script>
+
+                var timeline = <%- JSON.stringify(stat.get('instance')) %>;
+
+                var jsondata = new Array();
+                for (var key in timeline)
+                                {
+                                    jsondata.push({ day: key, value: timeline[key] }); 
+                                }
+
+             </script>
+
+
+           <div class='row statscntr'>
+  
+                <div class='col-md-2'>
+                    <h2><%= stat.get('people_reached') %></h2>
+                    <small>people reached</small>
+                </div>
+
+                 <div class='col-md-2'>
+                    <h2><%= stat.get('people_talking') %></h2>
+                    <small>people talking</small>
+                </div>
+
+                <div class='col-md-4'>
+                
+                   <canvas id="dial"></canvas>
+                    
+                </div>
+
+
+                <div class='col-md-2'>
+                    <h2><%= stat.get('plays_streams') %></h2>
+                    <small>plays & streams</small>
+                </div>
+
+                 <div class='col-md-2'>
+                    <h2><%= stat.get('followers') %></h2>
+                    <small>followers</small>
+                </div>
+
+            </div>
+
+           
+
+        </div>
+
+
+        <div class="highlight">
+            <!--<button type="button" class="btn btn-default btn-newbtn">Promote</button>-->
+            <button type="button" class="btn btn-default btn-noborder"><span class="glyphicon glyphicon-star"></span> Save</button>
+            <button type="button" class="btn btn-default btn-noborder" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-share-alt"></span> Share</button>
+        </div>
+
+    </li>

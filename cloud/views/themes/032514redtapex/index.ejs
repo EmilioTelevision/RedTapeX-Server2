@@ -1,0 +1,22 @@
+<% include header %>
+<div class="content-wrapper">
+        <div class="content-wrapper__inner">
+
+
+  <div class="main-post-list">
+
+    <ol class="post-list">
+      <!--post article loop-->
+
+      <% for(var i=0; i<data.blog.length; i++) {%>
+      <li>
+        <h2 class="post-list__post-title post-title"><a href="/<%=data.blog[i].objectId %>"><%= data.blog[i].title %></a></h2>
+        <abbr class="timeago" title="<%- data.blog[i].createdAt %>"></abbr>
+        <p class="excerpt"> <%- data.blog[i].body %></p>
+
+        <hr class="post-list__divider" />
+      </li>
+      <% } %>
+    </ol>
+</div>
+<% include footer %>

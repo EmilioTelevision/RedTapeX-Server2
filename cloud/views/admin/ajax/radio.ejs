@@ -1,0 +1,97 @@
+<h1>Launch Promo</h1>
+
+
+
+<script>
+  var handler = StripeCheckout.configure({
+    key: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh',
+    image: 'https://fuccyocms.parseapp.com/img/logo.png',
+    token: function(token, args) {
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with 'token.id'
+
+      $('#tokenx').val(token.id);
+     
+      reach.visual.loader('show');
+      
+      $('#order').submit();
+
+    }
+  });
+
+  document.getElementById('customButton').addEventListener('click', function(e) {
+    // Open Checkout with further options
+    handler.open({
+      name: 'RedTapeX Marketing Campaigm',
+      description: 'Social Advertising',
+      amount: 50000,
+      email: '<%= user.getUsername() %>'
+    });
+    e.preventDefault();
+  });
+</script>
+
+
+<Br><Br>
+
+
+<div class='row'>
+
+<form id='order' method='post' action='/order'>
+
+
+<input type='hidden' name='product' value='social ad'>
+<input type='hidden' name='amount' value='5000'>
+<input type='hidden' name='token' id='tokenx'>
+
+
+
+    <h3>
+
+        <div>On </div>
+           <input class='post_title' name='startdate' value='02-14-2014'>
+        <div> I want to launch a campaign for </div>
+             <input class='post_title' name='artist' placeholder='artist name' value='<%= user.get('artist') %>'>
+        <div>called</div>
+            <input class='post_title' name='name' placeholder='campaign name'>
+        <div>.</div>
+        </h3>
+
+
+    <h3>
+        <div>The campaign will last</div>
+            <select class='content_area' name='duration'>
+                <option>2 weeks (recommended)</option>
+                <option>3 weeks</option>
+                <option>4 weeks</option>
+            </select>
+        <div> driving likes, shares, comments, retweets and subscriptions on</div>
+            <input class='post_title' name='networks' placeholder='facebook, twitter'>
+        <div>.</div>    
+    </h3>
+
+
+    <h3>
+         <div>The promotions will look like </div>
+         <div class='form_section'>
+
+            <div id='imagesarea'></div>
+
+            <label>Select a photo to upload</label>
+            <input type='file' class='upfle' id='fileToUpload' onchange="fileSelected();">
+
+            <input type='hidden' name='img_array' id='img_array'>
+
+        </div>
+    </h3>
+
+</div>
+
+</form>
+
+<div class='row'>
+
+    <button class="button" id="customButton">Launch campaign</button>
+   
+</div>
+

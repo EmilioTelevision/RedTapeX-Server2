@@ -1,0 +1,35 @@
+.x-post {
+	border-bottom: 1px solid #EBEBEB;
+}
+.meta-wrapper {
+	padding-bottom: 50px;
+	padding-top: 50px;
+}
+.blog-title {
+	
+}
+.blog-meta {
+	
+}
+.blog-meta h2 {
+	
+}
+.blog-meta small {
+    color: yellowgreen;
+	
+}
+.blog-post {
+	
+}
+.blog-post .blog-image {
+    padding-bottom: 50px;
+
+}
+.blog-post p {
+    clear: both;
+	
+}
+.blog-post .blog-author {
+	padding-bottom: 30px;
+	padding-left: 0;
+}

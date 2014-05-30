@@ -1,0 +1,108 @@
+<% var stylesheet = "admin" %>
+<% include header %>
+
+
+<div class="col-sm-4 col-md-3 sidebar2">
+              
+
+                 <h6>Create new content for your website.</h6>
+              
+                  <a class='newstuff' href='/admin'><img class='navimg' src='img/backarrow.png'>All Content</a>
+                  
+                
+
+                 
+          </div>   
+
+
+<div id='mainarea' class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-4 main">
+
+  <h1 class="page-header"><%= ((post.length == 0) ? 'New Blog Post' : 'Edit Blog Post') %></h1>
+         
+<form class='new_post' method='post' action='/<%= ((post.length == 0) ? 'posts' : 'posts/'+post.id) %>'>
+
+
+<input type='hidden' name='area' value='<%= area %>'>
+
+
+<div class='row'>
+<div class='col-md-4'>
+
+
+
+
+
+ <div class='form_section'>
+    <select class='content_area' name='moduleDefault' onchange="changeFormFunc(this);">
+       
+                                 <option <%= ((selected == 'blog') ? 'selected' : '') %> value='blog'>Blog Post</option>
+                                 <option <%= ((selected == 'instagram') ? 'selected' : '') %>  value='instagram'>Instagram</option>
+                                 <option <%= ((selected == 'soundcloud') ? 'selected' : '') %>  value='soundclound'>SoundCloud</option>
+                                 <option <%= ((selected == 'product') ? 'selected' : '') %>  value='product'>Product</option>
+                        
+    </select>
+  </div>
+
+ </div><!-- //4 -->
+
+
+
+
+
+  
+
+
+
+</div><!-- //row -->
+
+
+<div class='row'>
+<div class='col-md-9'>
+
+    
+
+
+  <div class='form_section'>
+    <label>Title</label>
+    <input class='post_title' autocomplete="off" name='title' value='<%= ((post.length == 0) ? 'New Content Title' : post.get('title')) %>'/>
+  </div>
+
+
+
+  <div class='form_section'>
+  <label>Body</label>
+
+     
+
+    <textarea class='post_body post_body_form' name='body'><%= ((post.length == 0) ? 'Enter your content here...' : post.get('body')) %></textarea>
+  </div>
+
+
+
+  
+
+
+  <div class='form_section'>
+     <input class='button submitbtncontent' type='submit' value='<%= ((post.length == 0) ? 'Save' : 'Update') %>' />
+   </div>
+
+
+     <%- ((post.length == 0) ? '' : ' <input type="hidden" name="_method" value="put" />') %>
+
+
+
+     
+
+
+
+
+</div>
+</div>
+
+</form>
+
+</div>
+
+
+
+<% include footer %>

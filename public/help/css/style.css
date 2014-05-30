@@ -1,0 +1,30 @@
+body {
+	background: #000;
+	padding-top: 40px;
+}
+.logo {
+	padding-bottom: 40px;
+}
+h1 b {
+color: #FA2541;
+}
+.links .container {
+	background: #000;
+}
+.links ul {
+	position: relative;
+	left: 30%;
+}
+.links li {
+	list-style-type: none;
+	display: inline;
+	float: left;
+}
+.links ul li a:hover{
+	text-decoration: none;
+}
+@media (max-width: 420px) { 
+	.links ul {
+    left: 0;
+	}
+}

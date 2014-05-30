@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "_default": {
+            "link": "anycloud"
+        }, 
+        "anycloud": {
+            "applicationId": "FimfCpUGwzUiO1ramughg9maLP4QhLgn2v8rvLN5", 
+            "masterKey": "qhAEuozGQ8IhcKR0nLtVWpzFQP3rACzpIgKT9hCT"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.16"
+    }
+}

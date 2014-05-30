@@ -1,0 +1,60 @@
+
+
+<style>
+    .circle{
+        background: #92be45;
+width: 50px;
+text-align: center;
+color: #fff;
+padding: 20px 5px;
+border-radius: 50px;
+top: 20px;
+left: 20px;
+position: absolute;
+    }
+    </style>
+
+<div id="chartContainer">
+  <div class='circle'>+5%</div>
+    
+  <script src="lib/d3.v3.min.js"></script>
+  <script src="lib/dimple.v2.0.1.js"></script>
+  <style>.tick {display: none;}div#chartContainer {background: #f6f7f9;}</style>
+  <script type="text/javascript">
+  
+    var svg = dimple.newSvg("#chartContainer", '100%', 150);
+       
+          data = [{"metric":"plays","value":"12137","Month": "Jan-11"},{"metric":"downloads","value":"972","Month": "Feb-11"},{"metric":"favs","value":"444","Month": "Mar-11"},{"metric":"comments","value":"30", "Month": "Apr-11"}];
+          
+            
+          // Filter for a single SKU and Channel
+          //data = dimple.filterData(data, "SKU", "Theta 18 Pack Standard");
+          //data = dimple.filterData(data, "Channel", "Hypermarkets");
+
+          // Create and Position a Chart
+          var myChart = new dimple.chart(svg, data);
+               myChart.setBounds(0, 0, '100%', 150);
+          var x = myChart.addCategoryAxis("x", "Month")
+          myChart.addMeasureAxis("y", "value");
+
+          // Order the x axis by date
+          x.addOrderRule("Date");
+
+          // Min price will be green, middle price yellow and max red
+          myChart.addColorAxis("Price", ["#d1387c", "#d1387d"]);
+
+          // Add a thick line with markers
+          var lines = myChart.addSeries(null, dimple.plot.line); 
+          lines.lineWeight = 6 ;
+          lines.lineMarkers = true;
+
+
+        
+
+          // Draw the chart
+          myChart.draw();
+
+       
+
+  </script>
+</div>

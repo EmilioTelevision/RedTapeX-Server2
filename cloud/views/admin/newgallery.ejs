@@ -1,0 +1,97 @@
+<% var stylesheet = "admin" %>
+<% include header %>
+
+
+<div class="col-sm-4 col-md-3 sidebar2">
+              
+                      <% include _newedit_sidebar %>
+
+                      
+                  <h6>Modify the settings and update the content of your website. Add page content, blog posts to your website</h6>
+              
+                  <a class='newstuff' href='/admin'><img class='navimg' src='img/backarrow.png'>All Content</a>
+                  
+                
+
+                 
+
+                 
+
+                  
+          </div>   
+
+
+<div id='mainarea' class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-4 main">
+          <h1 class="page-header"><%= ((!post) ? 'New Gallery' : 'Edit Gallery') %></h1>
+
+
+<div class='row'>
+<div class='col-md-9'>
+
+<form class='new_post' method='post' action='/posts'>
+
+
+ <div class='form_section'>
+    <select class='content_area' name='area' onchange="changeFormFunc(this);">
+         <% if (!_.isEmpty(areas)) { %>
+                            <% areas.forEach(function(area) { %>
+                                 <option data-custom='<%= ((area.get('fieldPath') != 'undefined') ? area.get('fieldPath') : '') %>' value='<%= area.id %>'><%= area.get('name') %></option>
+                            <% }) %>
+
+                    <% } %>
+    </select>
+  </div>
+
+
+  <div class='form_section'>
+    <label>Gallery Title</label>
+    <input class='post_title' name='title' value='<%= ((!post) ? '' : post.get('title')) %>' />
+  </div>
+
+
+
+<div class='form_section'>
+
+    <div id='imagesarea'>
+    
+    <% if (!_.isEmpty(post)) { %>
+    <% if (typeof post.get('img_array') != 'undefined') { %>
+              
+            <% post.get('img_array').forEach(function(pic) { %>
+                                  <img class='closex' onclick='removeFile("<%= pic %>"); $(this).next().remove(); $(this).remove();' src='../../img/remove.png'> 
+                                <img class='thumbn' src='<%= pic %>'>
+                            <% }) %>
+
+
+                   
+ 
+             
+               
+            <% } %> 
+    <% } %>
+    </div>
+
+    <label>Select a photo to upload</label>
+    <input type='file' class='upfle' id='fileToUpload' onchange="fileSelected();">
+
+    <input type='hidden' name='img_array' id='img_array' value='<%= ((!post) ? '' : post.get('img_array').toString() ) %>' />
+
+</div>
+
+
+
+
+
+  <div class='form_section'>
+    <input class='button' type='submit' value='<%= ((!post) ? 'Publish' : 'Update') %>' />
+  </div>
+</form>
+
+</div>
+</div>
+
+</div>
+
+
+
+<% include footer %>

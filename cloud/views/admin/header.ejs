@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>X</title>
+
+   <% var rootpath = '//fuccyocms.parseapp.com' %>
+
+
+ 
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="<%= rootpath %>/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="css/calendar.css">
+
+    <!-- Custom styles for this template -->
+    <link href="<%= rootpath %>/css/dashboard.css" rel="stylesheet">
+
+    <link href="<%= rootpath %>/css/bootstrap3-wysiwyg5.css" rel="stylesheet">
+
+      <link href="<%= rootpath %>/css/animations.css" rel="stylesheet">
+
+      <link href="<%= rootpath %>/fonts/ss-social-regular.css" rel="stylesheet" />
+
+
+
+
+ <link href="<%= rootpath %>/css/fancySelect.css" rel="stylesheet">
+
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+    <link href="<%= rootpath %>/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<%= rootpath %>/css/froala_editor.min.css" rel="stylesheet" type="text/css">
+    
+
+       
+
+
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+    @import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+    </style>
+
+
+  <script src="<%= rootpath %>/js/jquery.min.js"></script>
+
+    <script src="<%= rootpath %>/js/bootstrap.min.js"></script>
+  <script src='<%= rootpath %>/js/fancySelect.js'></script>
+    <script src="<%= rootpath %>/js/prettify.js"></script>
+    <script src="<%= rootpath %>/js/wysihtml5-0.3.0.min.js"></script>
+    <script src="<%= rootpath %>/js/bs3wys.js"></script>
+    <script src='<%= rootpath %>/js/jquery.mixitup.min.js'></script>
+   
+    <script src='<%= rootpath %>/js/d3.js'></script>
+     
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js'></script>
+
+    <script src="<%= rootpath %>/js/morris.js" ></script>
+
+     <script src="<%= rootpath %>/js/nbigsound.js" ></script>
+    
+     <script src="https://checkout.stripe.com/checkout.js"></script>
+
+     <script src="//www.parsecdn.com/js/parse-1.2.16.min.js"></script>
+
+     <script>Parse.initialize("HOSc6eHDJnTD7Vgmlwklu9Xx8iEmKrl2n9yZkZEY", "vTX9Iyary3qdUnjDKAtZBdHUSww157VQsV7SLYq8");</script>
+
+  </head>
+
+  <body>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            
+            <img class='logo imgtk' src='<%= rootpath %>/images/xlogo.png'>
+            
+          <ul class="nav nav-sidebar">
+
+           <% if (!_.isEmpty(user)) { %>
+
+          <% if (user.get('analytics') == true) { %>  <li class="active"><a href="/stats"> <img class='navimg' src='<%= rootpath %>/img/stats.png'> Dashboard</a></li> <% } %>
+
+          <% if (user.get('web') == true) { %>  <li><a href="/admin"> <img class='navimg' src='<%= rootpath %>/img/web.png'>Web</a></li> <% } %>
+          
+          <% if (user.get('settings') == true) { %> <li><a href="/settings"> <img class='navimg' src='<%= rootpath %>/img/settings.png'>Settings</a></li> <% } %>
+           
+           <% if (user.get('promo') == true) { %> <li><a href="/promo"> <img class='navimg' src='<%= rootpath %>/img/promo.png'>Promo</a></li> <% } %>
+          
+
+         <% } %>
+ 
+            <!--<li><a href="/social"> <img class='navimg' src='<%= rootpath %>/img/socialp.png'>Social</a></li>-->
+            
+            <!--<li><a href="/fans"> <img class='navimg' src='<%= rootpath %>/img/fans.png'>Fans</a></li>-->
+            
+
+
+          </ul>
+          
+        </div>
+          
+          
+       
+<% include _help %>   

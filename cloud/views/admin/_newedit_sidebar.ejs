@@ -1,0 +1,13 @@
+<% if (!_.isEmpty(sites)) { %>
+
+              <h3>Manage Content</h3>
+             
+              
+               <select onchange='switchSites(this);' class="selectsite" data-container="body" data-animation="true" data-trigger="hover" data-toggle="popover" data-selector="true" data-placement="right" data-content="Switch between artist accounts">
+             
+              <% sites.forEach(function(site) { %>
+                                <option <%= ((active == site.id) ? 'selected="selected"' : '' ) %> value='<%= site.id %>'><%= site.get('sitename') %></option>
+                            <% }) %>
+                 <option value='new'><i>add a new account...</i></option>
+                 </select>           
+              <% } %>

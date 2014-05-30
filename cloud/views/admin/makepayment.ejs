@@ -1,0 +1,151 @@
+<% var stylesheet = "admin" %>
+<% var title = "Admin" %>
+<% include header %>
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+
+<style>.sidebar{display:none;}</style>
+
+<div class="col-sm-4 col-md-3 sidebar2" style='display:none;'>
+              
+              <h3>Settings</h3>
+                      
+                  <h6>Administer your account and customize your portal. Account settings</h6>
+              
+                  <h5>Area Settings</h5>
+
+                  <ul class='smlst'>
+                      <li class='settings-general' onclick='settingsToggle("general");'><a>General</a></li>
+                      <li class='settings-web' onclick='settingsToggle("web");'><a>Web</a></li>
+                      <li class='settings-shop' onclick='settingsToggle("shop");'><a>Shop</a></li>
+                      <li class='settings-social' onclick='settingsToggle("social");'><a>Social</a></li>
+                      <li class='settings-promo' onclick='settingsToggle("promo");'><a>Promo</a></li>
+
+                  </ul>
+                  
+          </div>   
+
+<style>
+h3.clf {
+margin-top:20px;
+}
+
+.checkarea{
+    border: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+
+
+label:after{
+    clear:both;
+    display:block;
+}
+label{
+    width: 42%;
+    display: inline-table;
+  
+}
+
+input[type="checkbox"]:before {
+clear:both
+}
+input[type="checkbox"] {
+border: 1px solid #ccc;
+display: inline-block;
+width: 5%;
+}
+
+#terms{
+margin-top:30px;
+}
+#terms label {
+width: 100%;
+}
+h1.page-header {
+text-align: center;
+}
+</style>
+<div id='mainarea' class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-4 main">
+          <h1 class="page-header">Make Payment</h1>
+          
+
+
+ <script type="text/javascript">
+    // This identifies your website in the createToken call below
+    Stripe.setPublishableKey('pk_test_48hdG8ApRXaTmypPB9aFvWkx');
+ 
+    var stripeResponseHandler = function(status, response) {
+      var form = $('#payment-form');
+ 
+      if (response.error) {
+        // Show the errors on the form
+        form.find('.payment-errors').text(response.error.message);
+        //form.find('button').prop('disabled', false);
+      } else {
+        // token contains id, last4, and card type
+        var token = response.id;
+        // Insert the token into the form so it gets submitted to the server
+        form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        // and re-submit
+        alert('success on stripe....');
+        form.submit();
+      }
+    };
+ 
+   
+        function launchPay(){
+
+        console.log('...launch form...');
+
+        var form =$('#payment-form');
+ 
+        // Disable the submit button to prevent repeated clicks
+        //$form.find('button').prop('disabled', true);
+ 
+        Stripe.card.createToken(form, stripeResponseHandler);
+ 
+        // Prevent the form from submitting with the default action
+        return false;
+      }
+  
+  </script>
+</head>
+<body>
+  <h1>Charge $99 with Stripe</h1>
+ 
+  <form action='/processSubscription' method="POST" id="payment-form">
+    <span class="payment-errors"></span>
+ 
+    <div class="form-row">
+      <label>
+        <span>Card Number</span>
+        <input type="text" size="20" data-stripe="number"/>
+      </label>
+    </div>
+ 
+    <div class="form-row">
+      <label>
+        <span>CVC</span>
+        <input type="text" size="4" data-stripe="cvc"/>
+      </label>
+    </div>
+ 
+    <div class="form-row">
+      <label>
+        <span>Expiration (MM/YYYY)</span>
+        <input type="text" size="2" data-stripe="exp-month"/>
+      </label>
+      <span> / </span>
+      <input type="text" size="4" data-stripe="exp-year"/>
+    </div>
+ 
+    <a onclick="launchPay();">Submit Payment</a>
+  </form>
+
+
+
+</div>
+
+
+<% include footer %>

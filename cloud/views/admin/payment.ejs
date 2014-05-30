@@ -1,0 +1,178 @@
+<% var stylesheet = "admin" %>
+<% var title = "Admin" %>
+<% include header %>
+
+
+
+<div class="col-sm-4 col-md-3 sidebar2">
+              
+              <h3>Settings</h3>
+               
+               <% if (!_.isEmpty(sites)) { %>
+               <select onchange='switchSites(this);' class="selectsite" data-container="body" data-animation="true" data-trigger="hover" data-toggle="popover" data-selector="true" data-placement="right" data-content="Switch between artist accounts">
+             
+              <% sites.forEach(function(site) { %>
+                                <option <%= ((active == site.id) ? 'selected="selected"' : '' ) %> value='<%= site.id %>'><%= site.get('sitename') %></option>
+                            <% }) %>
+                 </select>           
+              <% } %>
+
+       
+                  <h6>Administer your account and customize your portal. Account settings</h6>
+              
+                  <h5>Area Settings</h5>
+
+                  <ul class='smlst'>
+                      <li class='settings-general' onclick='settingsToggle("general");'><a>General</a></li>
+                      <li class='settings-web' onclick='settingsToggle("web");'><a>Web</a></li>
+                      <li class='settings-shop' onclick='settingsToggle("shop");'><a>Shop</a></li>
+                      <li class='settings-social' onclick='settingsToggle("social");'><a>Social</a></li>
+                      <li class='settings-users' onclick='settingsToggle("users");'><a>Users</a></li>
+                  </ul>
+                  
+          </div>   
+
+
+<div id='mainarea' class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-4 main">
+          <h1 class="page-header"><span>General</span> Settings</h1>
+
+
+
+
+
+<ul id='grid' class='blog_body'>          
+
+
+    <li class='mix post_container settings-general'>
+        <div class='form_section'>
+
+            <div id='imagesarea'>
+                 <% if(typeof user.get('img_array') != 'undefined'){ user.get('img_array').forEach(function(pic) { %>
+
+                   <img src="<%= pic %>">
+              
+                <% })} %>
+            </div>
+
+            <label>Upload your logo</label>
+            <input type='file' class='upfle' id='fileToUpload' onchange="fileSelected();">
+
+            <input type='hidden' name='img_array' id='img_array'>
+
+        </div>
+    </li>
+
+    <li class='mix post_container settings-general'>
+        <a href='#'>Connect Facebook</a>
+        <a href='#'>Connect Twitter</a>
+        <a href='#'>Connect Youtube</a>
+    </li>
+
+
+     <li class='mix post_container settings-general'>
+        <div class='form_section'>
+            <label>Admin Email</label>
+            <input class='post_title' name='email' value='<%= user.getUsername() %>' />
+          </div>
+
+
+        <div class='form_section'>
+            <label>Admin Password</label>
+            <input class='post_title' name='password' />
+          </div>
+
+        <div class='form_section'>
+            <label>Admin Password Confirm</label>
+            <input class='post_title' name='passwordrepeat' />
+          </div>
+    </li>
+ 
+
+     <li class='mix post_container settings-web'>
+        <div class='form_section'>
+            <label>Google Analytics Tracking ID</label>
+            <input class='post_title' name='email' />
+          </div>
+
+           <div class='form_section'>
+            <label>Custom CSS</label>
+            <textarea class='post_title' name='custom_css'><%= user.get('custom_css') %></textarea>
+          </div>
+
+
+
+        <div class='form_section'>
+            <label>RedTape X URL</label>
+            <input class='post_title' name='url' value='<%= user.get('host') %>'/>
+          </div>
+
+          
+          <div class='form_section'>
+            <label>Custom Domain</label>
+            <input class='post_title' name='url' value='<%= user.get('customdomain') %>'/>
+          </div>
+
+
+<pre>
+(function(d, script) {
+    script = d.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.onload = function(){
+        // remote script has loaded
+    };
+    script.src = '//www.redtapex.com/x.js';
+    d.getElementsByTagName('head')[0].appendChild(script);
+}(document));
+</pre>
+
+
+        <div class='form_section'>
+            <label>Template</label>
+            <input class='post_title' name='template' value='<%= user.get('template') %>'/>
+          </div>
+
+
+        <div class='form_section'>
+            <label>Site Token</label>
+            <input class='post_title'  value='<%= active %>'/>
+          </div>
+          
+
+     </li>
+
+
+
+     <li class='mix post_container settings-users'>
+
+        <img src='/img/invite.png' class='inviteico'>
+
+        <form action='/invite' method='post'>
+        <div class='form_section'>
+            <label>Invite People</label>
+            <input class='post_title'  name='emails' value=''/>
+          </div>
+          <input type='submit' value='Send Invites' class='button'>
+        </form>
+    </li>
+
+
+     <li class='mix post_container settings-shop'>
+        <div class='form_section'>
+            <select class='content_area' name='gateway'>
+                 
+              <option>Stripe</option>
+                                  
+            </select>
+          </div>
+     </li>
+
+
+</ul>
+
+         
+        </div>
+
+
+
+<% include footer %>

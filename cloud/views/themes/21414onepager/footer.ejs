@@ -1,0 +1,109 @@
+
+    <footer id="footer">
+        <div class="wrapper">
+
+        <section class="span3">
+          <h2>Info</h2>
+          <li><a href="#">Delivery info</a></li>
+           <li><a href="#">Terms and Conditions</a></li>
+            <li><a href="#">Sitemap</a></li>
+        </section> <!-- /.span4 -->
+        
+        <section class="span3">
+          <h2>My account</h2>
+          <li><a href="#">Your Account</a></li>
+           <li><a href="#">Transaction Results</a></li>
+            <li><a href="#">Checkout</a></li>
+        </section> <!-- /.span4 -->
+
+        <section class="span3">
+          <h2>Contact us</h2>
+          <li><a href="#">tbctimebomb@gmail.com</a></li>
+        </section> <!-- /.span4 -->
+
+      
+      <div class="span3 credits payments-and-notices">
+        
+        <section class="span3 shop-notices">
+          <img src="//cdn.shopify.com/s/files/1/0371/0477/t/3/assets/timebomb-logo-bottom.png?739">
+          Copyright &copy; 2014 timebombtest
+          
+           <div class="wrapper payment-methods">
+    <div class="span3">
+      
+      <div class="">
+        <ul class="credit-cards clearfix">
+          <li><img src="//cdn.shopify.com/s/files/1/0371/0477/t/3/assets/icn_cc-visa.gif?739" alt="Visa" /></li>
+          <li><img src="//cdn.shopify.com/s/files/1/0371/0477/t/3/assets/icn_cc-mastercard.gif?739" alt="MasterCard" /></li>
+          <li><img src="//cdn.shopify.com/s/files/1/0371/0477/t/3/assets/icn_cc-amex.gif?739" alt="Amex" /></li>
+          
+          
+          
+          
+          
+          <li><img src="//cdn.shopify.com/s/files/1/0371/0477/t/3/assets/icn_cc-paypal.gif?739" alt="PayPal" /></li>
+          
+        </ul> <!-- /.credit-cards -->
+      </div> <!-- /.span6 -->
+
+        </section> <!-- /.span8 -->
+        <img class="pull-left" src="//cdn.shopify.com/s/files/1/0371/0477/t/3/assets/redtape2.png?739"> 
+      </div> <!-- /.row.payments-and-notices -->
+  </div> <!-- /.wrapper -->
+
+    
+    </div> <!-- /.row -->
+  </div> <!-- /.wrapper -->
+  
+ </div><!-- /.wrapper --> 
+</footer> <!-- /#footer -->
+
+  <script src="//cdn.shopify.com/s/files/1/0371/0477/t/3/assets/jquery.slider.js?739" type="text/javascript"></script>
+  
+  
+  <script src="//cdn.shopify.com/s/files/1/0371/0477/t/3/assets/fancy.js?739" type="text/javascript"></script>
+  <script src="//cdn.shopify.com/s/files/1/0371/0477/t/3/assets/shop.js?739" type="text/javascript"></script>
+
+  
+  <script src="//cdn.shopify.com/s/files/1/0371/0477/t/3/assets/twitter-fetcher.js?739" type="text/javascript"></script>
+  <script src="//cdn.shopify.com/s/files/1/0371/0477/t/3/assets/instagram.js?739" type="text/javascript"></script>
+
+  <script>
+        
+  //instagram pull
+                
+    $(function() {
+     $(".instagram").instagram({
+        hash: 'brooklyn', 
+        clientId: '62ebc0c962794117a8daac977688f9a1',
+        image_size: 'low_resolution',
+        show: 4,
+    });
+  });
+
+</script>
+
+
+ <!-- JavaScript -->
+  <script type="text/template" id="item-template">
+    <div class="item">
+      <div class="inner">
+        <p class="name"><<%= '%' %>- item.name %></p>
+        <div class="price-qty">
+          <span class="remove"></span>
+          <input class="qty" name="qty" value="<<%= '%' %>- item.quantity %>" />
+          <p class="price">
+            <span class="value"><em>$</em>10.00</span> &times;
+          </p>
+        </div>
+      </div>
+    </div>
+  </script>
+
+<script src="https://checkout.stripe.com/v3/checkout.js"></script>
+
+  <script>var stripeKey = 'pk_test_48hdG8ApRXaTmypPB9aFvWkx';</script>
+  <script src="//fuccyocms.parseapp.com/js/shop.min.js"></script>
+
+</body>
+</html>

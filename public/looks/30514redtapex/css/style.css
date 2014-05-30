@@ -1,0 +1,129 @@
+.navbar {
+	background: #2e2e2e;
+	margin-bottom: 0;
+	border-radius: 0;
+}
+.header-social {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+.fb_iframe_widget {
+bottom: 5px;
+}
+.jumbotron {
+background: #fff;
+padding: 0px;
+margin-bottom: 0px;
+}
+.jumbotron h1 {
+	font-weight: bold;
+}
+.jumbotron h1, .jumbotron p {
+	text-align: center;
+	letter-spacing: 1px;
+}
+.jumbotron p {
+	color:#dc3c4b;
+	font-weight: lighter;
+}
+.jumbotron span {
+	color:#4b4b4b;
+}
+.logo {
+	text-align: center;
+}
+.invite {
+	background: #11122c;
+	padding: 20px;
+}
+.invite p {
+	color: #a7a7a7;
+	text-align: center;
+	font-size: 12px;
+	letter-spacing: 1px;
+}
+.invite-form  {
+	text-align: center;
+}
+.invite-form p {
+	display: inline;
+}
+.invite-form p.input input {
+	border: none;
+	padding: 14px;
+	width: 400px;
+	margin-right: 3px;
+	letter-spacing: 2px;
+}
+.invite-form p.submit input {
+	color:#fff;
+	background: #47da70;
+	border: none;
+	padding-top: 14px;
+	padding-bottom: 14px;
+	padding-left: 25px;
+	padding-right: 25px;
+	letter-spacing: 3px;
+}
+#error, #success {
+text-align: center;
+text-indent: 10px;
+display: inline-block;
+position: absolute;
+opacity: 0;
+text-transform: uppercase;
+float: left;
+line-height: 33px;
+color: #dc3c4b;
+}
+.tweets h2 {
+color: #d8d8d8;
+text-align: center;
+padding-bottom: 30px;
+letter-spacing: 0px;
+font-family: 'Open Sans', sans-serif;
+font-weight: 100;
+text-transform: uppercase;
+}
+#twitter-widget-2 {
+	height: 258px;
+}
+#twitter-widget-2  blockquote .twitter-tweet .standalone-tweet .expanded .footer {
+margin-top: 52px;
+}
+
+.logo img {
+width: 100%;
+margin: auto;
+}
+.navbar {
+min-height: 10px;
+height: 60px;
+}
+
+.jumbotron .container {
+max-width: 100%;
+width: 100% !important;
+padding: 0px !important;
+}
+
+.proof{
+    background:#11122c;
+}
+
+.followus {
+text-align: center;
+padding-top: 30px;
+margin-bottom: 0px;
+}
+
+iframe html body {
+display: block;
+background: #fff !important;
+}
+
+.sociallane{
+   padding-top: 50px;
+padding-bottom: 100px;
+}

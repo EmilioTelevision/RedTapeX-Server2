@@ -1,0 +1,227 @@
+<% var stylesheet = "admin" %>
+<% var title = "Admin" %>
+<% include header %>
+
+<style>
+body{
+background:#f2f2f2;
+}
+#grid .mix {
+margin-bottom: 0px;
+}
+</style>
+
+
+<div class="col-sm-4 col-md-3 sidebar2">
+              
+
+
+<div class='coverpic'>
+
+<div class='detailview'>
+    <img src='<%= thissite.get('facebookProPic') %>' class='profilepic'>
+    <small>&nbsp;</small>
+    
+   <!-- <a class='btn btn-default btn-lg'>Invite users to manage account</a> -->
+     <% if (!_.isEmpty(sites)) { %>
+               <select onchange='switchSites(this);' class="selectsite" data-container="body" data-animation="true" data-trigger="hover" data-toggle="popover" data-selector="true" data-placement="right" data-content="Switch between artist accounts">
+             
+              <% sites.forEach(function(site) { %>
+                                <option <%= ((active == site.id) ? 'selected="selected"' : '' ) %> value='<%= site.id %>'><%= site.get('sitename') %></option>
+                            <% }) %>
+                            <option value='new'><i>add a new account...</i></option>
+                 </select>           
+              <% } %>
+    
+
+</div>
+
+<div class='coverarea'></div>
+<img class='covr' src='<%= thissite.get('fbCover') %>'>
+</div>
+
+
+
+
+             
+                    
+              
+             
+  
+                  <h6>This section is to show you how well all your digital efforts are doing.</h6>
+              
+
+                  <h6>Where we're getting your data from</h6>
+                  
+                  <ul class='socialli'>
+                  <% if (thissite.length != 0 && typeof thissite.get('networkUrls') != 'undefined') { %>
+                         <% thissite.get('networkUrls').forEach(function(source) { %>
+                        <li><i class='ss-<%= domain(source) %>'></i><small><%= domain(source) %></small></li>
+                        <% }) %>
+                  <% } %>
+                  </ul>
+
+
+ <% if (_.isEmpty(data)) { %>   
+                  
+
+                <h5>Advanced Filters</h5>
+
+
+               
+                  <ul class='smlst'>
+                      <li class='stats-general' onclick='statsToggle("general");'><a>All</a></li>
+                      <li class='stats-web' onclick='statsToggle("web");'><a>Web</a></li>
+                      <li class='stats-shop' onclick='statsToggle("shop");'><a>Social</a></li>
+                      <li class='stats-social' onclick='statsToggle("social");'><a>Sales</a></li>
+                      <li class='stats-promo' onclick='statsToggle("promo");'><a>Promo</a></li>
+
+                  </ul>
+                <% } %>  
+          </div>   
+
+
+<div id='mainarea' class="col-sm-5 col-sm-offset-7 col-md-4 col-md-offset-4 main">
+         
+  
+
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <form action="/sendInsight" method="post" id="emform">  
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Share this insight</h4>
+              </div>
+              <div class="modal-body">
+                                  
+                    <table width="100%">
+                        <tr>                        
+                            <td>To: </td> <td><input type="text" name="email" placeholder="enter emails"></td>
+                        </tr>
+                        <th>&nbsp;</th>
+                        <tr>                        
+                            <td>Message: </td> <td><input type="text" name="msg" placeholder="Attached Notes..."></td>
+                        </tr>
+                    </table>
+               
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="start" onclick='$("#emform").submit();'>Send</button>
+              </div>
+            </div>
+          </div>
+           </form>
+        </div>
+           
+    </center>
+
+   
+    <script type="text/javascript">
+
+        $(document).ready(function(){   
+
+            
+
+           /*
+                $("#form").submit(function(e){
+
+                    $.ajax({
+
+                        url: "dateRecd.php",
+                        type: "POST",
+                        data: $(this).serialize(),
+
+                        success: function(data){
+                            alert(data);
+                        //  chatWith('9','name');
+                        }
+
+
+                    });
+                  
+               
+            });
+              */
+        });
+    </script>
+
+
+
+
+
+
+
+
+       
+  <ul id='grid' class='streamstats insightfeed'>
+
+    
+
+
+
+
+
+
+
+
+
+<% if (!_.isEmpty(stats)) { %>
+    	
+      		<% stats.forEach(function(stat) { %>
+
+                    <% if (stat.get('filename') == 'bigreshare'){  %> <% include cards/bigreshare %><% } %>
+                    <% if (stat.get('filename') == 'pressmention'){  %> <% include cards/pressmention %><% } %>
+                    <% if (stat.get('filename') == 'videorecap'){  %> <% include cards/videorecap %><% } %>
+                    <% if (stat.get('filename') == 'weeklyupdate'){  %> <% include cards/weeklyupdate %><% } %>
+                    
+
+                     <% if (stat.get('filename') == 'interactions'){  %> <% include cards/interactions %><% } %>
+                     <% if (stat.get('filename') == 'weeklybests'){  %> <% include cards/weeklybests %><% } %>
+                    
+                     <% if (stat.get('filename') == 'recap') { %> <% include cards/recap %><% } %>
+
+
+     		<% }) %>
+    	
+   
+
+ <% } %>
+
+
+
+
+
+
+
+
+
+
+
+    <% if (_.isEmpty(stats)) { %> <% include cards/getstarted %> <% } %>
+
+
+
+
+
+
+
+              
+
+
+     <!--<div class='nodatablk'><img src='img/nodata.png'>No Data Available</div>-->
+
+
+
+
+
+
+
+  </ul>       
+        </div>
+
+
+
+<% include footer %>

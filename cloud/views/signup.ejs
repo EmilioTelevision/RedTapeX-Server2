@@ -1,0 +1,42 @@
+<% include _header %>
+
+
+
+<div style='background: #1f2528;  padding-top:250px; min-height:800px; height:100%;'>
+<img style="width: 170px; margin:auto; display:block;" src="http://redtapedesign.com/reach/wp-content/uploads/2013/03/cropped-rtreachlogo.png">
+
+
+
+<div class='row'>
+
+    <div class='col-4 col-sm-offset-4'>
+        
+        <h1>Sign Up</h1>
+
+        <form role="form" method='POST' action="signup">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input name='username' type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input name='password' type="password"  name="password"  class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Remember Me
+            </label>
+          </div>
+          <button type="submit" class="btn btn-default bt-red">Sign In</button>
+        </form>
+        
+    </div>
+
+</div>
+
+
+</div>
+
+
+<% include _footer %>

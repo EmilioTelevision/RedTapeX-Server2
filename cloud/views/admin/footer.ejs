@@ -1,0 +1,675 @@
+<% var rootpath = '//fuccyocms.parseapp.com' %>
+
+   </div>
+    </div>
+
+
+
+
+
+<div class="modal hide fade" id="events-modal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Event</h3>
+    </div>
+    <div class="modal-body" style="height: 400px">
+    </div>
+    <div class="modal-footer">
+        <a href="#" data-dismiss="modal" class="btn">Close</a>
+    </div>
+</div>
+
+
+<div class="app-loader br-4"><div></div></div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  <!--  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> -->
+
+  <script src="<%= rootpath %>/js/jquery-1.7.2.min.js"></script>
+
+    <script src="<%= rootpath %>/js/bootstrap.min.js"></script>
+    <script src='<%= rootpath %>/js/jqcookie.js'></script>
+    <script src="<%= rootpath %>/js/prettify.js"></script>
+    <script src="<%= rootpath %>/js/wysihtml5-0.3.0.min.js"></script>
+    <script src="<%= rootpath %>/js/bs3wys.js"></script>
+    <script src='<%= rootpath %>/js/jquery.mixitup.min.js'></script>
+
+ 
+   <script type="text/javascript" src="js/underscore.min.js"></script>
+
+        <script type="text/javascript" src="js/calendar.js"></script>
+        <script type="text/javascript">
+            var calendar = $('#calendar').calendar({
+            modal : "#events-modal", 
+            modal_type : "ajax", 
+            modal_title : function (e) { return e.title },
+            events_source: [
+                    {
+                        "id": 293,
+                        "title": "Name of post",
+                        "class": "event-important",
+                        "start": 1397102400000 , // Milliseconds
+                        "end": 1397102400000 // Milliseconds
+                    },
+                ]
+            });
+        </script>
+
+<!--
+
+old: 1397230630271
+new: 1234576967000
+-->
+
+    <script src="<%= rootpath %>/js/froala_editor.min.js"></script>
+    <script src="<%= rootpath %>/js/sparkline212.js"></script>
+      <script src="<%= rootpath %>/js/guage.js"></script>
+
+
+
+    <script>
+        function closehelp(){
+            $('#overlaytut').animate({'top': '-10000px'}, 2500);
+        }
+
+        function initHelp(){
+            $('.newstuff').popover('show');
+            $('.helpfilter').popover('show');
+            $('.selectsite').popover('show');
+        }
+
+
+        function switchSites(e){
+            if ($('.selectsite option:selected').val() != '' && $('.selectsite option:selected').val() != 'new'){
+                reach.visual.loader('show');
+                window.location = '/changesite/'+$('.selectsite option:selected').val();
+               
+            } else if ($('.selectsite option:selected').val() == 'new') {
+                reach.visual.loader('show');
+                 window.location = '/getstarted';
+
+            }
+
+        }
+
+        $('document').ready(function(){
+            
+            $('.inlinesparkline').sparkline('html', {
+                type: 'line',
+                width: '100px',
+                height: '20px',
+                fillColor: undefined,
+                spotColor: undefined,
+                minSpotColor: undefined,
+                maxSpotColor: undefined,
+                highlightSpotColor: undefined,
+                highlightLineColor: undefined,
+                normalRangeColor: '#1b1a1b'
+            });
+
+            $("#grid a").click(function(){
+                reach.visual.loader('show');
+            });
+
+            $(".sidebar a").click(function(){
+                reach.visual.loader('show');
+            });
+
+
+            if(window.location.pathname.split('/')[1] == 'newContent')
+            {
+                
+                $('.content_area').val(window.location.pathname.split('/')[2]);
+            
+            }
+            
+           
+
+            
+
+
+            retract = '30.3%';
+            if (window.location.pathname == '/payment' || window.location.pathname == '/getstarted' || window.location.pathname == '/launch' || window.location.pathname == '/promo' )  retract = '19.3%';
+            if (window.location.pathname.indexOf('signup') > -1)  retract = '19.3%';
+                
+                //close on window open
+                $( ".sidebar" ).css('width', '6%');
+                 $( "#mainarea" ).css('width', '69.666667%');
+                  $( "#mainarea" ).css('marginLeft', retract);
+                   $( ".sidebar2" ).css('marginLeft', '0%');
+
+
+            
+               
+            
+            
+            $( ".sidebar" ).mouseenter(function() {
+                $( ".sidebar" ).css('width', '16.6%');
+                
+                $( "#mainarea" ).css('width', '83.3334%');
+              $( "#mainarea" ).css('marginLeft', '40%');
+             $( ".sidebar2" ).css('marginLeft', '10.6%');
+             
+                
+             });
+
+
+            $( ".sidebar" ).mouseleave(function() {
+              $( ".sidebar" ).css('width', '6%');
+               $( "#mainarea" ).css('width', '69.666667%');
+                $( "#mainarea" ).css('marginLeft', retract);
+                $( ".sidebar2" ).css('marginLeft', '0%');
+
+                });
+            
+
+            
+                       
+$('.post_body_form').wysihtml5();
+//$(".post_body_form").editable("sync");
+
+$('#edit').editable({})
+      
+
+//$('.choosesite').fancySelect();
+
+
+        });
+        
+function changeFormFunc(e)
+{
+    
+
+        if ($('.content_area option:selected').val() != window.location.pathname.split('/')[2])
+        {
+             $.cookie("areaedit", $('.content_area option:selected').val());
+              reach.visual.loader('show'); 
+
+              window.location = 'https://'+window.location.hostname+'/newContent/' + $('.content_area option:selected').val() + '/' + window.location.pathname.split('/')[3];
+        }
+
+           
+            
+             
+      
+}
+
+
+function settingsToggle(e){
+
+    $('.page-header span').html(e);
+    $('.smlst li a').css('fontWeight', '300');
+    $('#grid').mixitup('filter','settings-'+e);
+    $('.settings-'+e).find('a').css('fontWeight', '700');
+}
+
+
+
+
+$(function(){
+     
+    $('#grid').mixitup({
+         layoutMode: 'grid',
+         targetDisplayGrid: 'block',
+         targetDisplayList: 'block',
+          onMixStart: function(x,y){
+             reach.visual.loader('show');
+          },
+       
+          onMixLoad: function(){
+
+             if (window.location.pathname == '/admin')  $('#grid').mixitup('filter','calendarview'); $('.smlst li a').css('fontWeight', '300');$('.page-header span').html('All');
+
+
+            if (window.location.pathname == '/settings')  settingsToggle('general');
+            if (window.location.pathname == '/stats'){
+
+                    new Morris.Line({
+                                    element: 'primarychart', 
+                                    data: jsondata, 
+                                    xkey: 'day', 
+                                    ykeys: ['value'], 
+                                    labels: ['Value'], 
+                                    pointFillColors: ['#da347f'],
+                                    lineColors: ['#da347f','#da347f','#da347f'], 
+                                    colors: ['#da347f','#da347f','#da347f'], 
+                                    grid: false,
+                                    axes: true
+                                });
+
+            }
+
+          
+            var opts = {
+                lines: 12, // The number of lines to draw
+                angle: 0, // The length of each line
+                lineWidth: 0.47, // The line thickness
+                pointer: {
+                  length: 0.71, // The radius of the inner circle
+                  strokeWidth: 0.062, // The rotation offset
+                  color: '#000000' // Fill color
+                },
+                limitMax: 'false',   // If true, the pointer will not go past the end of the gauge
+                colorStart: '#AD1D89',   // Colors
+                colorStop: '#D73380',    // just experiment with them
+                strokeColor: '#E0E0E0',   // to see which ones work best for you
+                generateGradient: true
+              };
+              var target = document.getElementById('dial'); // your canvas element
+              var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+              gauge.maxValue = 100; // set max gauge value
+              gauge.animationSpeed = 119; // set animation speed (32 is default value)
+              gauge.set(20); // set actual value
+
+
+             
+setTimeout(function(){
+ //(function(a){var b="embedly-platform",c="script";if(!a.getElementById(b)){var d=a.createElement(c);d.id=b;d.async=true;d.src=("https:"===document.location.protocol?"https":"http")+"://cdn.embedly.com/widgets/platform.js";var e=document.getElementsByTagName(c)[0];e.parentNode.insertBefore(d,e)}})(document);
+},1000);
+               
+
+            
+
+          },
+          onMixEnd: function(x,y){
+            console.log(x.filter);
+             reach.visual.loader('hide');
+          }
+    });
+     
+});
+
+
+if (typeof reach == 'undefined'){var reach = {};} 	
+   
+ 
+reach.files = {
+    uploads: []
+}
+
+reach.visual = {
+    filter: function(i,n,t)
+    {
+        $('.smlst li a').css('fontWeight', '300');
+        $(t).find('a').css('fontWeight', '700');
+
+        $('#grid').mixitup('filter',i);
+        $('.page-header span').html(n);
+        
+
+    },
+    loader: function(method)
+     {
+        if (method == 'hide') {
+            $('.app-loader').fadeOut();
+
+             $('#mainarea').css('opacity', '1');
+            
+        } else {
+            $('.app-loader').fadeIn();
+            
+             $('#mainarea').css('opacity', '.1');
+        }
+    }
+
+}
+
+
+
+function cleanUp(url) {
+    var url = $.trim(url);
+    if(url.search(/^https?\:\/\//) != -1)
+        url = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i, "");
+    else
+        url = url.match(/^([^\/?#]+)(?:[\/?#]|$)/i, "");
+    return url[1];
+}
+
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
+
+
+$('#search-artists').keyup(function() {
+    delay(function(){
+     console.log('auto detect');
+     reach.pdata.search();
+    }, 1000 );
+});
+
+
+function checkurl()
+{
+ $('#websiteurl').val(cleanUp($('#websiteurl').val()));
+$('.successb').fadeIn();
+}
+
+
+
+function removeLaunchSlider()
+{
+     reach.visual.loader('show');
+     $( "#innerarea" ).fadeOut('slow');
+     $( "#innerarea" ).remove();
+     $('#mainarea').css('opacity', '1');
+     reach.visual.loader('hide');
+
+     $( ".sidebar" ).css('width', '6%');
+               $( "#mainarea" ).css('width', '69.666667%');
+                $( "#mainarea" ).css('marginLeft', '19.3%');
+                $( ".sidebar2" ).css('marginLeft', '0%');
+}
+
+function launchPromo(type)
+{
+
+    $('#mainarea').css('marginLeft','-41.6%');
+    $('#mainarea').css('opacity', '.3');
+    $('#mainarea').after('<div id="innerarea" class="col-md-8"><a class="newstuff" onClick="removeLaunchSlider();"><img class="navimg" src="img/backarrow.png">Back to select promo</a><div id="ajaxarea"></div></div>');
+    reach.visual.loader('show');
+    
+    $.get( "ajax/"+type, function( data ) {
+        $( "#ajaxarea" ).html( data );
+         reach.visual.loader('hide');
+    });
+
+
+}
+
+
+
+reach.data = {
+    unserialize: function (data) {
+    // From: http://phpjs.org/functions
+    // +     original by: Arpad Ray (mailto:arpad@php.net)
+    // +     improved by: Pedro Tainha (http://www.pedrotainha.com)
+    // +     bugfixed by: dptr1988
+    // +      revised by: d3x
+    // +     improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +        input by: Brett Zamir (http://brett-zamir.me)
+    // +     improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +     improved by: Chris
+    // +     improved by: James
+    // +        input by: Martin (http://www.erlenwiese.de/)
+    // +     bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +     improved by: Le Torbi
+    // +     input by: kilops
+    // +     bugfixed by: Brett Zamir (http://brett-zamir.me)
+    // +      input by: Jaroslaw Czarniak
+    // +     improved by: Eli Skeggs
+    // %            note: We feel the main purpose of this function should be to ease the transport of data between php & js
+    // %            note: Aiming for PHP-compatibility, we have to translate objects to arrays
+    // *       example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}');
+    // *       returns 1: ['Kevin', 'van', 'Zonneveld']
+    // *       example 2: unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}');
+    // *       returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
+    var that = this,
+      utf8Overhead = function (chr) {
+        // http://phpjs.org/functions/unserialize:571#comment_95906
+        var code = chr.charCodeAt(0);
+        if (code < 0x0080) {
+          return 0;
+        }
+        if (code < 0x0800) {
+          return 1;
+        }
+        return 2;
+      },
+      error = function (type, msg, filename, line) {
+        throw new that.window[type](msg, filename, line);
+      },
+      read_until = function (data, offset, stopchr) {
+        var i = 2, buf = [], chr = data.slice(offset, offset + 1);
+
+        while (chr != stopchr) {
+          if ((i + offset) > data.length) {
+            error('Error', 'Invalid');
+          }
+          buf.push(chr);
+          chr = data.slice(offset + (i - 1), offset + i);
+          i += 1;
+        }
+        return [buf.length, buf.join('')];
+      },
+      read_chrs = function (data, offset, length) {
+        var i, chr, buf;
+
+        buf = [];
+        for (i = 0; i < length; i++) {
+          chr = data.slice(offset + (i - 1), offset + i);
+          buf.push(chr);
+          length -= utf8Overhead(chr);
+        }
+        return [buf.length, buf.join('')];
+      },
+      _unserialize = function (data, offset) {
+        var dtype, dataoffset, keyandchrs, keys, contig,
+          length, array, readdata, readData, ccount,
+          stringlength, i, key, kprops, kchrs, vprops,
+          vchrs, value, chrs = 0,
+          typeconvert = function (x) {
+            return x;
+          };
+
+        if (!offset) {
+          offset = 0;
+        }
+        dtype = (data.slice(offset, offset + 1)).toLowerCase();
+
+        dataoffset = offset + 2;
+
+        switch (dtype) {
+          case 'i':
+            typeconvert = function (x) {
+              return parseInt(x, 10);
+            };
+            readData = read_until(data, dataoffset, ';');
+            chrs = readData[0];
+            readdata = readData[1];
+            dataoffset += chrs + 1;
+            break;
+          case 'b':
+            typeconvert = function (x) {
+              return parseInt(x, 10) !== 0;
+            };
+            readData = read_until(data, dataoffset, ';');
+            chrs = readData[0];
+            readdata = readData[1];
+            dataoffset += chrs + 1;
+            break;
+          case 'd':
+            typeconvert = function (x) {
+              return parseFloat(x);
+            };
+            readData = read_until(data, dataoffset, ';');
+            chrs = readData[0];
+            readdata = readData[1];
+            dataoffset += chrs + 1;
+            break;
+          case 'n':
+            readdata = null;
+            break;
+          case 's':
+            ccount = read_until(data, dataoffset, ':');
+            chrs = ccount[0];
+            stringlength = ccount[1];
+            dataoffset += chrs + 2;
+
+            readData = read_chrs(data, dataoffset + 1, parseInt(stringlength, 10));
+            chrs = readData[0];
+            readdata = readData[1];
+            dataoffset += chrs + 2;
+            if (chrs != parseInt(stringlength, 10) && chrs != readdata.length) {
+              error('SyntaxError', 'String length mismatch');
+            }
+            break;
+          case 'a':
+            readdata = {};
+
+            keyandchrs = read_until(data, dataoffset, ':');
+            chrs = keyandchrs[0];
+            keys = keyandchrs[1];
+            dataoffset += chrs + 2;
+
+            length = parseInt(keys, 10);
+            contig = true;
+
+            for (i = 0; i < length; i++) {
+              kprops = _unserialize(data, dataoffset);
+              kchrs = kprops[1];
+              key = kprops[2];
+              dataoffset += kchrs;
+
+              vprops = _unserialize(data, dataoffset);
+              vchrs = vprops[1];
+              value = vprops[2];
+              dataoffset += vchrs;
+
+              if (key !== i)
+                contig = false;
+
+              readdata[key] = value;
+            }
+
+            if (contig) {
+              array = new Array(length);
+              for (i = 0; i < length; i++)
+                array[i] = readdata[i];
+              readdata = array;
+            }
+
+            dataoffset += 1;
+            break;
+          default:
+            error('SyntaxError', 'Unknown / Unhandled data type(s): ' + dtype);
+            break;
+        }
+        return [dtype, dataoffset - offset, typeconvert(readdata)];
+      }
+    ;
+
+    return _unserialize((data + ''), 0)[2];
+  }
+}
+
+
+
+
+
+/******** HTML5 Image Uploader **********/
+
+
+function fileSelected() {
+        var file = document.getElementById('fileToUpload').files[0];
+        if (file) {
+          var fileSize = 0;
+          if (file.size > 1024 * 1024)
+            fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString() + 'MB';
+          else
+            fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
+
+          console.log(file.name);
+          console.log(fileSize);
+
+          uploadFile();
+
+        }
+      }
+
+
+function removeFile(fle)
+{
+    
+    alert(fle);
+
+}
+
+      function uploadFile() {
+        var fd = new FormData();
+        fd.append("fileToUpload", document.getElementById('fileToUpload').files[0]);
+        
+        reach.visual.loader('show');
+
+        var fileUploadControl = $("#fileToUpload")[0];
+        if (fileUploadControl.files.length > 0) {
+          var file = fileUploadControl.files[0];
+          var name = "photo.jpg";
+          var parseFile = new Parse.File(name, file);
+          parseFile.save().then(function(e) {
+            // The file has been saved to Parse.
+            console.log(e);
+            
+            $('#imagesarea').append("<img class='closex' onclick='removeFile(\""+e._url+"\"); $(this).next().remove(); $(this).remove();' src='img/remove.png'> <img class='thumbn' src='"+e._url+"'>");
+            
+            reach.visual.loader('hide');
+
+            reach.files.uploads.push(e._url);
+            $('#img_array').val(reach.files.uploads.toString());
+
+          }, function(error) {
+            // The file either could not be read, or could not be saved to Parse.
+            console.log(error);
+          });
+        }
+
+
+        console.log(fd);
+
+      }
+
+      function uploadProgress(evt) {
+        if (evt.lengthComputable) {
+          var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+          document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
+          if (percentComplete > 99)
+                {
+                    ak.visuals.loader('show');
+                }
+        }
+        else {
+          document.getElementById('progressNumber').innerHTML = 'unable to compute';
+        }
+      }
+
+      function uploadComplete(evt) {
+        /* This event is raised when the server send back a response */
+        console.log(evt.target.responseText);
+        console.log('response======');
+        res = eval("(" + evt.target.responseText + ')');
+        console.log(res);
+        $('#hero_img').val(res.file);
+        ak.visuals.loader('hide');
+      }
+
+
+
+
+
+      </script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28323072-2', 'redtapex.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+  </body>
+</html>

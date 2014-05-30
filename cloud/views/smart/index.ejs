@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Music UI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="http://redtapex.github.io/Music-UI/css/magic-bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="http://redtapex.github.io/Music-UI/css/less/var.less" />
+
+	
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//fuccyocms.parseapp.com/js/underscore.min.js"></script>
+
+
+        
+
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="http://redtapex.github.io/Music-UI/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://redtapex.github.io/Music-UI/css/bootstrap.min.css" />
+	<link href="http://redtapex.github.io/Music-UI/webfonts/ss-social-circle.css" rel="stylesheet" />
+        
+
+        <script src="http://redtapex.github.io/Music-UI/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="https://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
+</head>
+<body>
+
+<style>
+.jumbotron {
+background-color: #000;
+margin-bottom: 0px;
+}
+
+form{
+padding:0;
+}
+
+.popover {
+position: absolute;
+display: block;
+left: auto;
+top: 40px;
+right: 20px;
+z-index: 9999;
+}
+
+.message {
+background: rgba(0,0,0,0.5);
+bottom: 0;
+left: 0;
+position: absolute;
+right: 0;
+top: 0;
+z-index: 999;
+display:none;
+}
+
+.message .inner {
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-ms-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+-webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.5),0 0 1px rgba(0,0,0,0.5);
+-moz-box-shadow: 0 2px 3px rgba(0,0,0,0.5),0 0 1px rgba(0,0,0,0.5);
+-ms-box-shadow: 0 2px 3px rgba(0,0,0,0.5),0 0 1px rgba(0,0,0,0.5);
+-o-box-shadow: 0 2px 3px rgba(0,0,0,0.5),0 0 1px rgba(0,0,0,0.5);
+box-shadow: 0 2px 3px rgba(0,0,0,0.5),0 0 1px rgba(0,0,0,0.5);
+box-sizing: border-box;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+background: #fff;
+left: 50%;
+margin-left: -200px;
+padding: 54px 60px;
+position: absolute;
+top: 35%;
+width: 400px;
+}
+
+div.col-md-4 .img-responsive {
+width: 80%;
+margin: auto;
+}
+
+.buy {
+position: relative;
+bottom: auto;
+margin-top: 20px;
+}
+
+<% color = 'black' %>
+<%= site.get('custom_css') %>
+</style>
+
+
+
+
+
+<button type="button" class="btn btn-cart btn-sm" ><span class="glyphicon glyphicon-shopping-cart"></span> YOUR BAG 
+<span class="count"><span class="number visible">0</span></span>
+</button>
+
+
+
+
+ <div id="bag" class="bag">
+
+    
+    <div class="custom-pop popover fade bottom in" style="display: none;">
+        <div class="arrow"></div>
+        <div class="popover-content"></div>
+
+        <div class="empty">
+            <div class="t-shirt"></div>
+            <p>You haven't picked anything yet!</p>
+          </div>
+
+          <div class="item-container">
+            <div class="error-message"></div>
+
+            <div class="items">
+             
+                
+
+            </div>
+        </div>
+
+
+
+
+    <div class="total">
+        <h4 class="left">
+            <small>TOTAL</small></h4>
+            
+
+          
+
+        <h4 class="right value">$0.00</h4>
+        </div>
+
+
+        <form method="post" action="/pay">
+             
+              <input type="hidden" name="order" id="order" value="" />
+
+               <a id='stripe-button-el' class='stripe-button-el button' href="#"><h3 class="popover-title">purcha$e</h3></a>
+
+             
+           
+        </form>
+
+       
+    </div>
+
+
+  </div><!-- /bag -->
+
+
+
+
+
+
+<% layout.forEach(function(contentArea) { %>
+    
+    <% if (data[contentArea]){ data[contentArea].forEach(function(contentItem) { %>
+        <% module = contentItem.module %>
+
+        <%if (module =='menu1') {%>  <% include header/header1 %>  <%}%>
+        <%if (module =='menu2') {%>  <% include header/header2 %>  <%}%>  
+
+        <%if (module =='hero1') {%>  <% include hero/hero1 %>  <%}%>
+        <%if (module =='hero2') {%>  <% include hero/hero2 %>  <%}%>
+
+        <%if (module =='blog1') {%>  <% include body/blog1 %>  <%}%>
+        <%if (module =='shop1') {%>  <% include body/shop1 %>  <%}%>
+        <%if (module =='threecol1') {%>  <% include body/threecol1 %>  <%}%>
+        <%if (module =='tour1') {%>  <% include body/tour1 %>  <%}%>
+       
+
+        
+
+    <% }) } else {%>
+    
+        
+         <%if (contentArea =='Email') {%>  <% include body/email1 %>  <%}%>
+
+        <%if (contentArea =='Footer') {%>  <% include footer/footer1 %>  <%}%>  
+
+
+    
+    <% } %>
+   
+
+
+    
+
+<% }) %>
+ 
+
+
+
+<!-- JavaScript -->
+  <script type="text/template" id="item-template">
+
+
+    <div class='item'>
+
+                <div class="sizes">
+                    <p><<%= '%' %>- item.name %> $<<%= '%' %>- item.price %> <small>x</small> 
+                        <input class="qty" name="qty" value="<<%= '%' %>- item.quantity %>" />
+                        <a href="#">
+                            <img src="http://redtapex.github.io/Music-UI/images/littlex.png">
+                        </a>
+                    </p>
+                </div>
+
+                </div>
+
+
+    
+  </script>
+
+<script src="https://checkout.stripe.com/v3/checkout.js"></script>
+<script>var stripeKey = 'pk_test_48hdG8ApRXaTmypPB9aFvWkx';</script>
+      
+
+
+<script src="http://redtapex.github.io/Music-UI/js/modernizr.custom.js"></script>
+<script src="http://redtapex.github.io/Music-UI/js/classie.js"></script>
+
+
+<script src="//fuccyocms.parseapp.com/js/bag.js"></script>
+<script src="//fuccyocms.parseapp.com/js/shop.js"></script>
+ <!-- <script src="//fuccyocms.parseapp.com/js/shop.min.js"></script> -->
+
+<script>
+
+/*parse email form*/
+
+ Parse.initialize("fxUqahJNVYi8uQGgNKE8Zyx7rKkZlVaMOEKphtKI", "NucKRj2v69ryWgGdTmlkv6qC1A5BOFT0vDNdFApu");
+</script>
+
+
+
+<script>
+ 
+ var Contactmessage = Parse.Object.extend("Contactmessage");
+
+
+$(document).ready(function(){
+
+
+$( ".btn-cart" ).click(function() {
+  $( ".custom-pop" ).toggle( "fast", function() {
+    // Animation complete.
+  });
+});
+
+
+  $("#contactForm").on('submit',function(e){
+    e.preventDefault();
+
+    console.log("we in this bitch!");
+
+    var data = {};
+    
+    data.email = $('#email').val();
+    
+
+    var contact = new Contactmessage();
+    contact.save(data, {
+      success: function(){
+        $('#success').css('opacity', 1);
+        $('form')[0].reset();
+
+      },
+      error: function() {
+        $('#error').css('opacity', 1);
+      }
+    }); 
+
+  }); 
+});
+</script>
+
+
+
+
+
+<!-- message -->
+    <div class="message">
+      <div class="inner">
+        <div class="icon loading"></div>
+        <p class="title">Processing your order!</p>
+        <p class="subline">
+          Give us a few seconds&hellip;
+        </p>
+      </div>
+    </div>
+    <!-- /message -->
+
+    <div class="add-to-bag-helper"><div class="image"></div></div>
+
+
+</body>
+</html>
